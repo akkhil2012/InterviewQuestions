@@ -19,3 +19,6 @@ NFR: The Doc mostly contains text
      Security aspects from infrasature (as Reverse Proxy)
      How to keep access safe ( Using Vault Connection as to store DB connection in AWS)
      What are the Performance BottleNecks,
+
+
+// How to chnage the Role freom Read to write and other way on the fly/ at runtime for a User per document???
