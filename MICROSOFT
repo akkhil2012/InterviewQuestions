@@ -24,3 +24,4 @@ NFR: The Doc mostly contains text
 // How to chnage the Role freom Read to write and other way on the fly/ at runtime for a User per document???
 // How to attain Lock on section-wise
 // Make doc update and user count for Doc update as atomic Operation
+// Should content be stored as String????
