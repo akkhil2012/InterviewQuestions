@@ -5,10 +5,12 @@ import org.example.model.Document;
 import org.example.model.DocumentContents;
 
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         DocumentManager documentManager
                 = new DocumentManager();
 
@@ -16,8 +18,39 @@ public class App {
 
 
         // To Write to Doc
-        documentManager.writeToDoc(1L,1L,"firstTestData");
+      //  documentManager.writeToDoc(1L,1L,"firstTestData");
+        ExecutorService executor = Executors.newFixedThreadPool(6);
+
+        Runnable writer1 = () -> {
+           // document.writeSection(0, "Hello");
+            documentManager.writeToDoc(1L,1L,"Hello ");
+            System.out.println("Written to section 0: Hello");
+        };
+        Runnable writer2 = () -> {
+            //document.writeSection(1, "World");
+            documentManager.writeToDoc(2L,1L,"Akhil");
+            System.out.println("Written to section 1: World");
+        };
+        Runnable writer3 = () -> {
+           // document.writeSection(2, "!!!");
+            documentManager.writeToDoc(3L,1L,"Gupta");
+            System.out.println("Written to section 2: !!!");
+        };
+
+
+        executor.execute(writer1);
+        Thread.sleep(3000);
+
+        executor.execute(writer2);
+        Thread.sleep(3000);
+
+        executor.execute(writer3);
+        Thread.sleep(3000);
+
         System.out.println(" Updated the Document................");
+
+
+
 
         Map<Long, Document> mp =
         documentManager.getDocIdMap();
@@ -40,7 +73,7 @@ public class App {
 
 
         // To Read from Data
-        String docmentContent = documentManager.readFromDoc(1L,1L);
-        System.out.println("-------------- > "+ docmentContent);
+      //  String docmentContent = documentManager.readFromDoc(1L,1L);
+      //  System.out.println("-------------- > "+ docmentContent);
     }
 }
