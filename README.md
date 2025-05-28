@@ -1,24 +1,39 @@
-# InterviewQuestions
-InterviewQuestions
+0. Rate limiting:
+     1. Rate Limiting:
+    Benefits:
+	    Resource Starvation; due to DoS
+		eg: 
+		 300 tweets/3 hour per person
+		 300 read/60 sec for google read
+        Reduces Cost;
+         Limiting access requests means fewer servers and allocating more resources to high priority APIs
+         in case of 3rd party APIs; per call Charges means limiting calls and hence reduces cost.
+    Client Side Vs Server Side API limiter?? Diff
+	  Clinet Sie:
+	     At application code/ internal tools
+		 chances to implement at client be different and can cause APIs to abused
+		 Used when USer Experience is priority
+	  Server-Side:
+         for Public APIs where Client can't be trusted
+         -ve: can add to latency		 
 
-===================
-MICROSOFT INTERVIEW
-====================
-Design the Concurrent editing doc application like Google Doc (LLD + HLD)
-NFR: The Doc mostly contains text
-     Read/Write ratio is equivalent
-	 Max. 10 people will be allowed to edit at moment(WRITE access)
-	 Access to be role based.
-	 Read Access count NO limit
-	 Need to maintain the Version of Doc (Max 10 versions)
-	 How to ensure that the Data is NOT inconsistent 
-	    How about if same line is edited (Conflict)  Shall we defeer it to users to resolve/ Recommend based on
-	 How to define the WRITE/READ event; to capture live events ( thus to maintain count of Users logged to updated Doc at any moment)	
-	 How to unblock for new Write request ; if count of user accessing Document has already reached Celing: Edit frequency based/timeOut
-     How to decide the timeOut if a user is Active BUt Stale.
-     How to change permission from WRITE to READ if User has write permission BUT User request access after celing is reached.
-	     Shall It be at RUnTime; using Cache ciuld be an option?
-		  Save to DB and than change ROLE from Write to READ in DB
-     Security aspects from infrasature (as Reverse Proxy)
-     How to keep access safe ( Using Vault Connection as to store DB connection in AWS)
-     What are the Performance BottleNecks,
+     Throttle Rules:
+             based on IP, UserId or Other properties
+    Need to inform User about being throttled			 
+	
+	API Gateway:
+	   deals with RAte Limiting, SSL Termination, authentication, IP whitelisting, serving static content
+	To Store token/Counters:
+           The counter per user is stored in in-memory DataBAse as;
+    fast to retrieve and has time based expiration Stretegy
+    HTTP 429// error code for Too Many Requests
+    Techniques:
+          1. Sliing Window
+		  2. Fixed Widnow
+		  2. Token Bucket
+		  4. leaky Bucket
+2. URL shortner
+3. Cache
+4. ThreadPool
+5. LoggingSystem
+6. Distributed loging System
