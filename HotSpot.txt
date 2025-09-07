@@ -1,0 +1,3 @@
+write java code to solve below statement: a list of washing machines with time it takes to wash clothes is given. how much minimum time it will take to wash number of clothes when all machines starts at same time
+
+given 2d array with rows having DoB and DoD . Find the year having max population
